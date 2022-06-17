@@ -1,0 +1,26 @@
+<template>
+  <div>
+    <h1>This is World Page</h1>
+    這是Props裡的: {{ msg }}<br>
+    <button @click="click">show param</button><br>
+    這是Route裡的(route.params):{{ routeInfo }}<br>
+  </div>
+</template>
+
+<script name="world-comp" setup lang="ts">
+import { defineProps,ref } from 'vue';
+import { useRoute } from 'vue-router'
+
+let msg = defineProps({
+  msg:String
+})
+
+let routeInfo = ref('')
+
+let route = useRoute()
+
+function click(){
+  routeInfo.value = JSON.stringify(route.params)
+}
+
+</script>
