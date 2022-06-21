@@ -32,6 +32,9 @@ import '@vuepic/vue-datepicker/dist/main.css'
 
 import LoadingVue from 'vue3-loading-overlay'
 
+//引入自訂的directive
+import vTip from './directives/tips'
+
 //加入fas,far pack
 library.add(fas,far)
 
@@ -39,6 +42,7 @@ createApp(App)
 .component('font-awesome-icon', FontAwesomeIcon)
 .component('Datepicker', Datepicker)
 .component('loading', LoadingVue)
+.directive('tip',vTip)
 .use(i18n)
 .use(router)
 .mount('#app')

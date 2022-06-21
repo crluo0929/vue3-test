@@ -33,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "keyfeature" */ '../views/VuelidateView.vue')
   },
   {
+    path: '/tip',
+    name: 'tip',
+    component: () => import(/* webpackChunkName: "tip" */ '../views/TipView.vue')
+  },
+  {
     path: '/routerview',
     name: 'routerview',
     component: () => import(/* webpackChunkName: "routerview" */ '../views/RouterView.vue'),

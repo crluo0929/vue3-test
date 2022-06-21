@@ -111,7 +111,6 @@ const rules = {
 
 const v$ = useVuelidate( rules, form )
 
-
 async function submit(){
     const ok = await v$.value.$validate()
     if(ok){

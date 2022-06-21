@@ -4,10 +4,14 @@
     <h3>測試bootstrap Modal用法</h3>
     <hr/>
 
+     <button class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      @click="maunalOpen"><font-awesome-icon icon="fa-solid fa-bell" />手動open</button> | 
     <button class="btn btn-primary"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
-      @click="open"><font-awesome-icon icon="fa-solid fa-bell" />Bug</button>
+      @click="open"><font-awesome-icon icon="fa-solid fa-bell" />toggle open</button>
 
     <!-- 要加上 ref 屬性參考到script中的屬性 -->
     <!-- teleport 表示該元素邏輯上是div子元素，但呈現上會跑到body層-->
@@ -69,6 +73,9 @@ function open(){
   console.log(myModalRef.value)
 }
 
+function maunalOpen(){
+  Modal.getInstance(myModalRef.value as Element)?.show()
+}
 
 </script>
 <style>

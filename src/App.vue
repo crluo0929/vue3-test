@@ -6,7 +6,8 @@
     <router-link to="/loading">LoadingView</router-link> |
     <router-link to="/keyfeature">KeyFeature</router-link> | 
     <router-link to="/vuelidate">Vuelidate</router-link> | 
-    <router-link to="/routerview">RouterView</router-link>
+    <router-link to="/routerview">RouterView</router-link> |
+    <router-link to="/tip">TipView</router-link> 
   </nav>
   <router-view />
 
