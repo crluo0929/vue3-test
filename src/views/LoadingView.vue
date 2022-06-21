@@ -10,21 +10,33 @@
     <loading :active="isLoading" 
             :can-cancel="true" 
             :on-cancel="onCancel"
-            :is-full-page="fullPage"></loading>
+            :is-full-page="fullPage">
+      <!-- 套bootstrap5 spinner -->
+      <div :class="loadingClass" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </loading>
     
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, Ref } from 'vue'
 import { useLoading } from 'vue3-loading-overlay';
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 
 const fullPage = ref(true);
 const isLoading = ref(false);
+let loadingClass:Ref<Array<string>> = ref(["spinner-grow", "text-primary"])
+const randomClass = ["text-primary","text-secondary","text-success","text-danger","text-warning","text-info","text-light","text-dark"]
 
 //從template中用變數去控制顯示與隱藏loading
 function fromTemplate(){
+
+    //隨機挑個loading style
+    const select = Math.floor(Math.random() * randomClass.length)
+    loadingClass.value[1] = randomClass[select] 
+
     isLoading.value = true;
     setTimeout(() => {
       isLoading.value = false
