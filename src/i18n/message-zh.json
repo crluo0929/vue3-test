@@ -3,6 +3,9 @@
 
     "user" : {
         "name" : "王先生"
+    },
+    "validations" : {
+        "customValidator" : "最大長度 10"
     }
     
 }

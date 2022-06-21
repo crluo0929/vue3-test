@@ -9,7 +9,9 @@
             <span :key="key">{{ text }}</span>
         </transition>
         <br>
+        <!-- 更新key，整個DOM會被重新更新 -->
         <button class="btn btn-primary" @click="changeKey">Change Key</button> |
+        <!-- 更新text，只會抽換內容，DOM不會整個換掉 -->
         <button class="btn btn-primary" @click="changeText">Change Text</button>
 
     </div>

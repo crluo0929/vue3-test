@@ -5,9 +5,11 @@
     <router-link to="/date">DatepickView</router-link> |
     <router-link to="/loading">LoadingView</router-link> |
     <router-link to="/keyfeature">KeyFeature</router-link> | 
+    <router-link to="/vuelidate">Vuelidate</router-link> | 
     <router-link to="/routerview">RouterView</router-link>
   </nav>
-  <router-view/>
+  <router-view />
+
 </template>
 
 <style>

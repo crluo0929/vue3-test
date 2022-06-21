@@ -28,6 +28,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "keyfeature" */ '../views/KeyFeatureView.vue')
   },
   {
+    path: '/vuelidate',
+    name: 'vuelidate',
+    component: () => import(/* webpackChunkName: "keyfeature" */ '../views/VuelidateView.vue')
+  },
+  {
     path: '/routerview',
     name: 'routerview',
     component: () => import(/* webpackChunkName: "routerview" */ '../views/RouterView.vue'),

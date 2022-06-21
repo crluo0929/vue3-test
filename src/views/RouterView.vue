@@ -17,6 +17,7 @@ import { ref } from 'vue'
 let router = useRouter()
 let routeInfo = ref("")
 
+//印出所有routes的資訊
 function info(){
     routeInfo.value = ''
     router.getRoutes().forEach((configRoute)=>{
@@ -28,6 +29,7 @@ function info(){
     })
 }
 
+//透過query方式傳遞參數，ex: http://localhost:8080/routerview/hello?msg=helllo~
 function query(){
 
     router.push({
@@ -38,6 +40,7 @@ function query(){
     })
 }
 
+//透過param方式傳遞參數，ex: http://localhost:8080/routerview/hello/msg/world~
 function param(){
     router.push({
         name : 'world',

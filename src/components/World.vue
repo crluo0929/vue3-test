@@ -11,6 +11,7 @@
 import { defineProps,ref } from 'vue';
 import { useRoute } from 'vue-router'
 
+//在route裡設定了將收到的參數放在props傳送過來
 let msg = defineProps({
   msg:String
 })
@@ -19,6 +20,7 @@ let routeInfo = ref('')
 
 let route = useRoute()
 
+//也可以從route.params裡找到傳過來的參數
 function click(){
   routeInfo.value = JSON.stringify(route.params)
 }

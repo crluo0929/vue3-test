@@ -2,8 +2,9 @@
     <div>
         <h1>LoadingView( <a href="https://github.com/moyoujun/vue3-loading-overlay" target="_blank">文件</a> )</h1>
         <hr/>
-        
+        <!-- 從template操作Loading，可以綁定active方式 -->
         <button class="btn btn-primary"  @click.prevent="fromTemplate">From Template</button> | 
+        <!-- 從script裡操作Loading，可以用useLoading()的方法 -->
         <button class="btn btn-primary"  @click.prevent="fromScript">From Script</button>
 
     <loading :active="isLoading" 

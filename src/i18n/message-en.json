@@ -3,5 +3,8 @@
 
     "user" : {
         "name" : "Mr. Wang"
+    },
+    "validations" : {
+        "customValidator" : "maxLength 10"
     }
 }
