@@ -1,0 +1,97 @@
+
+.tips-default .tooltip-inner{
+    max-width: 200px;
+    padding: .25rem .5rem;
+    color: #fff;
+    text-align: center;
+    background-color: #000;
+    border-radius: .25rem;
+}
+
+
+
+.tips-info .tooltip-inner{
+    color: #fff;
+    background-color: #0dcaf0;
+}
+.tips-success .tooltip-inner{
+    color: #fff;
+    background-color: #198754;
+}
+.tips-secondary .tooltip-inner{
+    color: #fff;
+    background-color: #6c757d;
+}
+.tips-primary .tooltip-inner{
+    color: #fff;
+    background-color: #0d61fd;
+}
+.tips-warn .tooltip-inner{
+    color: #fff;
+    background-color: #ffc107;
+}
+.tips-danger .tooltip-inner{
+    color: #fff;
+    background-color: #dc3545;
+}
+
+
+
+
+.tips-info .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before{
+    top: -1px;
+    border-width: .4rem .4rem .4rem 0;
+    border-top-color: #0dcaf0;
+}
+.tips-success .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before{
+    top: -1px;
+    border-width: .4rem .4rem 0;
+    border-top-color: #198754;
+}
+.tips-secondary .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before{
+    top: -1px;
+    border-width: .4rem .4rem 0;
+    border-top-color: #6c757d;
+}
+.tips-primary .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before{
+    top: -1px;
+    border-width: .4rem .4rem 0;
+    border-top-color: #0d61fd;
+    
+}
+.tips-warn .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before{
+    top: -1px;
+    border-width: .4rem .4rem 0;
+    border-top-color: #ffc107;
+}
+.tips-danger .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before{
+    top: -1px;
+    border-width: .4rem .4rem 0;
+    border-top-color: #dc3545;
+}
+
+
+
+.tips-danger.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before, .tips-danger.bs-tooltip-top .tooltip-arrow::before {
+    top: -1px;
+    border-width: .4rem .4rem 0;
+    border-top-color: #dc3545;
+}
+
+.tips-danger .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before, .bs-tooltip-start .tooltip-arrow::before {
+    left: -1px;
+    border-width: .4rem 0 .4rem .4rem;
+    border-left-color: #dc3545;
+}
+
+.tips-danger .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before, .bs-tooltip-bottom .tooltip-arrow::before {
+    bottom: -1px;
+    border-width: 0 .4rem .4rem;
+    border-bottom-color: #dc3545;
+}
+
+.tips-danger .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before, .bs-tooltip-end .tooltip-arrow::before {
+    right: -1px;
+    border-width: .4rem .4rem .4rem 0;
+    border-right-color: #dc3545;
+}

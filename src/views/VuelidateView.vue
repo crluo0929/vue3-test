@@ -27,25 +27,22 @@
             </p>
         </div>
         <!-- 客製化元件也可以驗證 -->
-        <Contact v-model="form.contact" ></Contact>
-        <p v-for="error of v$.contact.$errors" :key="error.$uid" class="error">
-            {{ error.$message }}
-        </p>
+        <!-- 使用自訂v-tip元件輸出error訊息，訊息靠右呈現  -->
+        <Contact v-model="form.contact" v-tip:[`right`]="v$.contact" ></Contact>
 
         <div class="form-group row">
             <label for="age" class="col-sm-2 col-form-label">age</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="age" placeholder="Enter age" v-model="v$.age.$model" >
+                <input type="text" class="form-control" id="age" placeholder="Enter age" v-model="v$.age.$model" v-tip:[`right`]="v$.age">
             </div>
-           <div v-if="v$.age.$error" class="error">{{ v$.age.$errors[0].$message }}</div>
         </div>
 
         <div class="form-group row">
             <label for="address" class="col-sm-2 col-form-label">address</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="address" placeholder="Enter address" v-model="v$.address.$model" >
+                <!-- 使用自訂v-tip元件輸出error訊息，訊息預設靠上呈現  -->
+                <input type="text" class="form-control" id="address" placeholder="Enter address" v-model="v$.address.$model" v-tip="v$.address">
             </div>
-           <div v-if="v$.address.$error" class="error">{{ v$.address.$errors[0].$message }}</div>
         </div>
 
         <br>
@@ -65,6 +62,7 @@ import useVuelidate from '@vuelidate/core'
 import { required, email, helpers, numeric, createI18nMessage } from '@vuelidate/validators'
 import Contact from '../components/Contact.vue' 
 import { useI18n } from 'vue-i18n'
+import vTip  from '../directives/tips'
 
 const {t, locale} = useI18n()
 

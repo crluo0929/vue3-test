@@ -15,6 +15,7 @@
 
     <!-- 要加上 ref 屬性參考到script中的屬性 -->
     <!-- teleport 表示該元素邏輯上是div子元素，但呈現上會跑到body層-->
+    <!-- data-bs-backdrop="static" 可鎖定視窗 -->
     <teleport to="body">
     <div
       class="modal fade"
@@ -23,6 +24,7 @@
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
+      data-bs-backdrop="static"
     >
       <div class="modal-dialog">
         <div class="modal-content">
