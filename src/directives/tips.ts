@@ -5,13 +5,14 @@ import './tips.css'
 const trigger = "hover"
 const customClass = "tips-default"
 
+//在main.ts 引用為directive，此tooltip只用來顯示資訊
 const vTip: Directive<HTMLElement> =  {
     
     mounted(el, binding:any) {
       //結合錯誤訊息的tips和一般的tooltips，當如果沒有$error，則視為一般tooltips，mounted起來，否則先不mounted
       if(binding.value?.$errors === undefined){
         el.setAttribute("data-bs-toggle", "tooltip");
-        el.setAttribute("data-bs-placement", "top");
+        el.setAttribute("data-bs-placement", binding.arg === undefined ? "top" : binding.arg);
         el.setAttribute("data-bs-trigger", binding.value?.trigger===undefined ? trigger : binding.value.trigger);
         el.setAttribute("data-bs-offset", "0,0");
         el.setAttribute("data-bs-title", binding.value?.title);

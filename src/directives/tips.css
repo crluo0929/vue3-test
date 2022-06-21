@@ -1,4 +1,4 @@
-
+/* 預設的style */
 .tips-default .tooltip-inner{
     max-width: 200px;
     padding: .25rem .5rem;
@@ -8,8 +8,7 @@
     border-radius: .25rem;
 }
 
-
-
+/* tooltip本身的style */
 .tips-info .tooltip-inner{
     color: #fff;
     background-color: #0dcaf0;
@@ -35,63 +34,82 @@
     background-color: #dc3545;
 }
 
-
-
-
-.tips-info .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before{
-    top: -1px;
-    border-width: .4rem .4rem .4rem 0;
+/* tooltip的箭頭top style */
+.tips-info.tooltip.bs-tooltip-top .tooltip-arrow::before {
     border-top-color: #0dcaf0;
 }
-.tips-success .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before{
-    top: -1px;
-    border-width: .4rem .4rem 0;
+.tips-success.tooltip.bs-tooltip-top .tooltip-arrow::before {
     border-top-color: #198754;
 }
-.tips-secondary .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before{
-    top: -1px;
-    border-width: .4rem .4rem 0;
+.tips-secondary.tooltip.bs-tooltip-top .tooltip-arrow::before {
     border-top-color: #6c757d;
 }
-.tips-primary .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before{
-    top: -1px;
-    border-width: .4rem .4rem 0;
+.tips-primary.tooltip.bs-tooltip-top .tooltip-arrow::before {
     border-top-color: #0d61fd;
-    
 }
-.tips-warn .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before{
-    top: -1px;
-    border-width: .4rem .4rem 0;
+.tips-warn.tooltip.bs-tooltip-top .tooltip-arrow::before {
     border-top-color: #ffc107;
 }
-.tips-danger .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before{
-    top: -1px;
-    border-width: .4rem .4rem 0;
+.tips-danger.tooltip.bs-tooltip-top .tooltip-arrow::before {
     border-top-color: #dc3545;
 }
 
-
-
-.tips-danger.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before, .tips-danger.bs-tooltip-top .tooltip-arrow::before {
-    top: -1px;
-    border-width: .4rem .4rem 0;
-    border-top-color: #dc3545;
+/* tooltip的箭頭right style */
+.tips-info.tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #0dcaf0;
+}
+.tips-success.tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #198754;
+}
+.tips-secondary.tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #6c757d;
+}
+.tips-primary.tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #0d61fd;
+}
+.tips-warn.tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #ffc107;
+}
+.tips-danger.tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #dc3545;
 }
 
-.tips-danger .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before, .bs-tooltip-start .tooltip-arrow::before {
-    left: -1px;
-    border-width: .4rem 0 .4rem .4rem;
+/* tooltip的箭頭left style */
+.tips-info.tooltip.bs-tooltip-start  .tooltip-arrow::before {
+    border-left-color: #0dcaf0;
+}
+.tips-success.tooltip.bs-tooltip-start  .tooltip-arrow::before {
+    border-left-color: #198754;
+}
+.tips-secondary.tooltip.bs-tooltip-start  .tooltip-arrow::before {
+    border-left-color: #6c757d;
+}
+.tips-primary.tooltip.bs-tooltip-start  .tooltip-arrow::before {
+    border-left-color: #0d61fd;
+}
+.tips-warn.tooltip.bs-tooltip-start  .tooltip-arrow::before {
+    border-left-color: #ffc107;
+}
+.tips-danger.tooltip.bs-tooltip-start  .tooltip-arrow::before {
     border-left-color: #dc3545;
 }
 
-.tips-danger .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before, .bs-tooltip-bottom .tooltip-arrow::before {
-    bottom: -1px;
-    border-width: 0 .4rem .4rem;
-    border-bottom-color: #dc3545;
+/* tooltip的箭頭bottom style */
+.tips-info.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #0dcaf0;
 }
-
-.tips-danger .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before, .bs-tooltip-end .tooltip-arrow::before {
-    right: -1px;
-    border-width: .4rem .4rem .4rem 0;
-    border-right-color: #dc3545;
+.tips-success.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #198754;
+}
+.tips-secondary.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #6c757d;
+}
+.tips-primary.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #0d61fd;
+}
+.tips-warn.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #ffc107;
+}
+.tips-danger.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #dc3545;
 }
