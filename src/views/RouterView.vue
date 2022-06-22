@@ -45,6 +45,7 @@ import { useRouter,useRoute, onBeforeRouteLeave, } from 'vue-router'
 import { ref,Ref } from 'vue'
 import { useGlobalStore } from '../hook/useGlobalStore'
 import Button from 'bootstrap/js/dist/button';
+import useRouteLeaveConfirm from '../hook/useRouteLeaveConfirm'
 
 let router = useRouter()
 let route = useRoute()
@@ -96,7 +97,7 @@ function provideInject(){
 //一般的送出鈕，不經過確認Modal就能離開
 function submitAndLeave(){
     //check business logic...
-    
+
     //補個meta屬性，不跳出確認就離開
     route.meta.noConfirm = true
     //導去自己要的那頁
@@ -114,32 +115,7 @@ function no(){
     Modal.getInstance(confirmModal.value as Element)?.hide()
 }
 
-//add click event listener in promise
-onBeforeRouteLeave((to, from, next) => {
-    //如果不想要confirm離開的，就設定route的meta屬性
-    if(from?.meta?.noConfirm){
-        next()
-        return ;
-    }
-
-    var myModal = new Modal(confirmModal.value as Element) 
-    const confirmPromise = new Promise((resolve,reject)=>{
-        const handler = function(e:any){ //偵測click事件
-            if(e.target.innerText === 'Yes'){ //這裡要跟Modal的確認按鈕內容一樣
-                resolve(true)
-            }else{
-                resolve(false)
-            }
-            //要移除，不然會累加click handler
-            confirmModal.value?.removeEventListener('click',handler) 
-        }
-        myModal.show()
-        confirmModal.value?.addEventListener('click',handler)
-        
-    })
-    confirmPromise.then((result)=>{ 
-        if(result) next() //確認結果是true就放行
-    })
-})
+//切出去共用，傳入modal reference和modal確定按鈕的名稱即可
+useRouteLeaveConfirm(confirmModal, 'Yes');
 
 </script>
