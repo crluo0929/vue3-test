@@ -3,8 +3,7 @@
     <h3>測試Router、Route</h3>
     <hr/>
     <span v-html="routeInfo"></span>
-    <button class="btn btn-primary" @click="goModalView">直接離開</button> |
-    <button class="btn btn-primary" @click="submitAndLeave">一般的確認送出</button> |
+    <button class="btn btn-primary" @click="submitAndLeave">確認送出</button> |
     <button class="btn btn-primary" @click="info">info</button> |
     <button class="btn btn-primary" @click="query">pushWithQuery</button> |
     <button class="btn btn-primary" @click="param">pushWithParam</button> |
@@ -31,7 +30,7 @@
             確定要離開?
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <button type="button" class="btn btn-secondary" @click="no">No</button>
             <button type="button" class="btn btn-primary" @click="yes">Yes</button>
           </div>
         </div>
@@ -42,16 +41,16 @@
 </template>
 <script setup lang="ts">
 import Modal from 'bootstrap/js/dist/modal';
-import { useRouter, onBeforeRouteLeave,RouteLocationNormalized,RouteLocationRaw } from 'vue-router'
-import { ref,Ref,nextTick, watch } from 'vue'
+import { useRouter,useRoute, onBeforeRouteLeave, } from 'vue-router'
+import { ref,Ref } from 'vue'
 import { useGlobalStore } from '../hook/useGlobalStore'
+import Button from 'bootstrap/js/dist/button';
 
 let router = useRouter()
+let route = useRoute()
 let routeInfo = ref("")
 let store:any = useGlobalStore()
 const confirmModal:Ref<null|Element> = ref(null)
-const canExit = ref(false);
-const leaveTo:Ref<any> = ref(null);
 
 //印出所有routes的資訊
 function info(){
@@ -94,46 +93,50 @@ function provideInject(){
     })
 }
 
-function goModalView(){
-    router.push({
-        name : 'modal'
-    })
-}
-
 //一般的送出鈕，不經過確認Modal就能離開
 function submitAndLeave(){
-    //check business login...if ok then leave
-    //設定好要離開的目地的
-    leaveTo.value = {
-        name : 'loading'
-    }
-    //觸發watch
-    canExit.value = true
-    
+    //補個meta屬性，不跳出確認就離開
+    route.meta.noConfirm = true
+    router.push({
+        name: 'loading'
+    })
 }
 
 //確定離開，則關閉視窗，並且設定canxit為真
 function yes(){
     Modal.getInstance(confirmModal.value as Element)?.hide()
-    canExit.value = true
 }
 
-//監控canExit，如果為真就push
-watch(canExit , (n,o)=>{
-    if(n){
-        router.push(leaveTo.value)
-    } 
-})
+function no(){
+    Modal.getInstance(confirmModal.value as Element)?.hide()
+}
 
 //離開前先把目地的存起來，再看canExit是否為真，若否則彈出視窗確認是否離開
-onBeforeRouteLeave((to:RouteLocationNormalized, from:any, next:any) => {
-    if(canExit.value){
+onBeforeRouteLeave((to, from, next) => {
+    //如果不想要confirm離開的，就設定route的meta屬性
+    if(from?.meta?.noConfirm){
         next()
-    }else{
-        leaveTo.value = to
-        var myModal = new Modal(confirmModal.value as Element) 
-        myModal.show()
+        return ;
     }
+
+    var myModal = new Modal(confirmModal.value as Element) 
+    const confirmPromise = new Promise((resolve,reject)=>{
+        const handler = function(e:any){ //偵測click事件
+            if(e.target.innerText === 'Yes'){ //這裡要跟Modal的確認按鈕內容一樣
+                resolve(true)
+            }else{
+                resolve(false)
+            }
+            //要移除，不然會累加click handler
+            confirmModal.value?.removeEventListener('click',handler) 
+        }
+        myModal.show()
+        confirmModal.value?.addEventListener('click',handler)
+        
+    })
+    confirmPromise.then((result)=>{ 
+        if(result) next() //確認結果是true就放行
+    })
 })
 
 </script>
