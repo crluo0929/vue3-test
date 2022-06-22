@@ -61,6 +61,11 @@ const routes: Array<RouteRecordRaw> = [
         meta :{
           data : 'world'
         }
+      },
+      {
+        path: 'provideinject',
+        name: 'provideinject',
+        component: ()=> import(/* webpackChunkName: "provideinject" */  '../components/ProvideInject.vue'),
       }
     ]
   }

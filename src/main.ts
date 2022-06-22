@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp,reactive } from 'vue'
 import App from './App.vue'
 import router from './router'
 
@@ -38,6 +38,9 @@ import vTip from './directives/tips'
 //加入fas,far pack
 library.add(fas,far)
 
+const STOREKEY = Symbol('STOREKEY')
+const GLOBALStore = reactive({})
+
 createApp(App)
 .component('font-awesome-icon', FontAwesomeIcon)
 .component('Datepicker', Datepicker)
@@ -45,4 +48,7 @@ createApp(App)
 .directive('tip',vTip)
 .use(i18n)
 .use(router)
+.provide(STOREKEY , GLOBALStore)
 .mount('#app')
+
+export { STOREKEY } ;

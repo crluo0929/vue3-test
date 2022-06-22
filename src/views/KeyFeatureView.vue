@@ -32,7 +32,6 @@ function changeText(){
     text.value += key.value
 }
 
-
 </script>
 <style>
 .fade-enter-active, .fade-leave-active {

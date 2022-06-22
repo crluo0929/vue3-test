@@ -59,6 +59,7 @@ let date:Ref<object|null> = ref(null)
 //for i18n 日期選擇器
 const key = ref(1); //當locale有變化時，用來強制更新Datepicker的DOM
 let c = computed(()=>i18n.locale.value === 'zh' ? "roc" : "gregory")
+//Intl.Locale傳兩個參數，第一個是locale，第二個是option物件，可指定calendar要用哪種，如roc可顯示民國年，gregory則是西元年
 let l = computed(()=>i18n.locale.value === 'zh' ? "zh-TW" : "en")
 let locale = computed(()=> new Intl.Locale( l.value , { calendar: c.value }))
 

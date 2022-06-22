@@ -95,15 +95,16 @@ let withI18nMessage = createI18nMessage({ t: t })
 //自訂i18n驗證器
 let maxLength18nValidator = withI18nMessage( maxLength(10), { withArguments : true} ) 
 
+//驗證規則配置
 const rules = {
     firstName: { required : required }, 
     lastName: { required,  $autoDirty: true }, //$autoDirty自動偵測更新 $dirty 狀態
     contact: { 
-        email : { email, required, $autoDirty: true  },
+        email : { email, required, $autoDirty: true  }, //可設定多個驗證器
         tel : { required, $autoDirty: true }
     },
-    age: { numeric:  helpers.withMessage('這欄需要輸入數字', numeric) }, //客製化驗證器的錯誤訊息
-    address: { customValidator : maxLength18nValidator } 
+    age: { numeric:  helpers.withMessage('這欄需要輸入數字', numeric) }, //驗證器的客製化錯誤訊息
+    address: { customValidator : maxLength18nValidator } //設定客製化的驗證器
      
 }
 

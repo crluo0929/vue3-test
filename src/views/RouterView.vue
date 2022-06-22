@@ -5,17 +5,20 @@
     <span v-html="routeInfo"></span>
     <button class="btn btn-primary" @click="info">info</button> |
     <button class="btn btn-primary" @click="query">pushWithQuery</button> |
-    <button class="btn btn-primary" @click="param">pushWithParam</button>
+    <button class="btn btn-primary" @click="param">pushWithParam</button> |
+    <button class="btn btn-primary" @click="provideInject">pushWithProvideInject</button>
 
     <router-view></router-view>
 
 </template>
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { ref,inject } from 'vue'
+import { STOREKEY } from '../main'
 
 let router = useRouter()
 let routeInfo = ref("")
+let store:any = inject(STOREKEY)
 
 //印出所有routes的資訊
 function info(){
@@ -47,6 +50,14 @@ function param(){
         params : {
             msg: 'world~'
         }
+    })
+}
+
+//透過main.ts註冊了一個全域的reactive store來給所有元件傳參用
+function provideInject(){
+    store.msg = { msg : 'this is object' }
+    router.push({
+        name : 'provideinject',
     })
 }
 
