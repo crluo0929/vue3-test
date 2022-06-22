@@ -4,9 +4,7 @@
     <h3>測試bootstrap Modal用法</h3>
     <hr/>
 
-     <button class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
+     <button class="btn btn-primary" 
       @click="maunalOpen"><font-awesome-icon icon="fa-solid fa-bell" />手動open</button> | 
     <button class="btn btn-primary"
       data-bs-toggle="modal"
@@ -63,7 +61,7 @@ import Modal from 'bootstrap/js/dist/modal';
 import { ref, Ref } from 'vue';
 
 //提供給template中的 ref 參考
-const myModalRef:Ref<null|Element> = ref(null)
+const myModalRef:Ref<null|HTMLElement> = ref(null)
 
 //按下確認鈕
 function confirm(){
@@ -76,7 +74,9 @@ function open(){
 }
 
 function maunalOpen(){
-  Modal.getInstance(myModalRef.value as Element)?.show()
+  var myModal = new Modal(myModalRef.value as Element) 
+  myModal.show()
+  // Modal.getInstance(myModalRef.value as Element)?.show(e)
 }
 
 </script>
