@@ -34,12 +34,12 @@ import LoadingVue from 'vue3-loading-overlay'
 
 //引入自訂的directive
 import vTip from './directives/tips'
+import { STOREKEY } from './hook/useGlobalStore'
 
 //加入fas,far pack
 library.add(fas,far)
 
-const STOREKEY = Symbol('STOREKEY')
-const GLOBALStore = reactive({})
+const GLOBALSTORE = reactive({})
 
 createApp(App)
 .component('font-awesome-icon', FontAwesomeIcon)
@@ -48,7 +48,5 @@ createApp(App)
 .directive('tip',vTip)
 .use(i18n)
 .use(router)
-.provide(STOREKEY , GLOBALStore)
+.provide(STOREKEY , GLOBALSTORE)
 .mount('#app')
-
-export { STOREKEY } ;

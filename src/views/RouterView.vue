@@ -13,12 +13,12 @@
 </template>
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { ref,inject } from 'vue'
-import { STOREKEY } from '../main'
+import { ref } from 'vue'
+import { useGlobalStore } from '../hook/useGlobalStore'
 
 let router = useRouter()
 let routeInfo = ref("")
-let store:any = inject(STOREKEY)
+let store:any = useGlobalStore()
 
 //印出所有routes的資訊
 function info(){
