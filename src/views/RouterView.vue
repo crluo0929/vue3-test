@@ -95,23 +95,26 @@ function provideInject(){
 
 //一般的送出鈕，不經過確認Modal就能離開
 function submitAndLeave(){
+    //check business logic...
+    
     //補個meta屬性，不跳出確認就離開
     route.meta.noConfirm = true
+    //導去自己要的那頁
     router.push({
         name: 'loading'
     })
 }
 
-//確定離開，則關閉視窗，並且設定canxit為真
+//確定離開，關視窗
 function yes(){
     Modal.getInstance(confirmModal.value as Element)?.hide()
 }
-
+//不想離開，一樣關視窗
 function no(){
     Modal.getInstance(confirmModal.value as Element)?.hide()
 }
 
-//離開前先把目地的存起來，再看canExit是否為真，若否則彈出視窗確認是否離開
+//add click event listener in promise
 onBeforeRouteLeave((to, from, next) => {
     //如果不想要confirm離開的，就設定route的meta屬性
     if(from?.meta?.noConfirm){
