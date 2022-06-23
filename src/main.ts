@@ -39,7 +39,7 @@ import { STOREKEY } from './hook/useGlobalStore'
 //加入fas,far pack
 library.add(fas,far)
 
-const GLOBALSTORE = reactive({})
+const GLOBALSTORE:any = reactive({})
 
 createApp(App)
 .component('font-awesome-icon', FontAwesomeIcon)

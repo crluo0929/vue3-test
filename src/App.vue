@@ -7,7 +7,8 @@
     <router-link to="/keyfeature">KeyFeature</router-link> | 
     <router-link to="/vuelidate">Vuelidate</router-link> | 
     <router-link to="/routerview">RouterView</router-link> |
-    <router-link to="/tip">TipView</router-link> 
+    <router-link to="/tip">TipView</router-link> |
+    <router-link to="/toast">ToastView</router-link> 
   </nav>
   <router-view />
 

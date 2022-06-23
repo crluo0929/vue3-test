@@ -9,6 +9,9 @@
     <button class="btn btn-primary" @click="param">pushWithParam</button> |
     <button class="btn btn-primary" @click="provideInject">pushWithProvideInject</button>
 
+    <br>
+    <input type="text" v-model="v$.input.$model" />
+
     <router-view></router-view>
 
     <!-- modal -->
@@ -46,15 +49,22 @@ import { ref,Ref } from 'vue'
 import { useGlobalStore } from '../hook/useGlobalStore'
 import Button from 'bootstrap/js/dist/button';
 import useRouteLeaveConfirm from '../hook/useRouteLeaveConfirm'
+import useVuelidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 
 let router = useRouter()
-let route = useRoute()
 let routeInfo = ref("")
 let store:any = useGlobalStore()
 const confirmModal:Ref<null|Element> = ref(null)
 
+
+//模擬欄位沒有dirty時，就離開該頁面會不會跳詢問視窗
+let input = ref('')
+const rules = { input: { required : required } }
+const v$ = useVuelidate( rules, {input} )
+
 //切出去共用，傳入modal reference和modal確定按鈕的名稱即可
-const noConfirmPush = useRouteLeaveConfirm(confirmModal, 'Yes');
+const noConfirmPush = useRouteLeaveConfirm(confirmModal, 'Yes', v$);
 
 //印出所有routes的資訊
 function info(){
@@ -108,6 +118,7 @@ function submitAndLeave(){
 
 //確定離開，關視窗
 function yes(){
+    v$.value.$reset()
     Modal.getInstance(confirmModal.value as Element)?.hide()
 }
 //不想離開，一樣關視窗
@@ -115,6 +126,5 @@ function no(){
     //也可以在button上加 data-bs-dismiss="modal" 
     // Modal.getInstance(confirmModal.value as Element)?.hide()
 }
-
 
 </script>

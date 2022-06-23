@@ -1,8 +1,9 @@
 import { useRouter,useRoute, onBeforeRouteLeave, } from 'vue-router'
 import Modal from 'bootstrap/js/dist/modal';
 import { ref,Ref } from 'vue'
+import { Validation,ValidationArgs } from '@vuelidate/core'
 
-export default function(confirmModal:Ref<any>, confirmBtnName:string){
+export default function(confirmModal:Ref<any>, confirmBtnName:string, v$?:Ref<Validation<ValidationArgs, any>>){
 
     const router = useRouter()
     const route = useRoute()
@@ -14,9 +15,14 @@ export default function(confirmModal:Ref<any>, confirmBtnName:string){
 
     //add click event listener in promise
     onBeforeRouteLeave((to, from, next) => {
+        if(v$ && !v$.value.$dirty){  //頁面完全沒dirty
+            next() ;
+            return ;
+        }
+
         //如果不想要confirm離開的，就設定route的meta屬性
         if(from?.meta?.noConfirm){
-            next()
+            next() ;
             return ;
         }
 
