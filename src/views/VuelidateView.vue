@@ -48,7 +48,7 @@
         <br>
         <button type="button" class="btn btn-primary" @click.prevent="clear">Clear</button> |
         <button type="submit" class="btn btn-primary" @click.prevent="submit">Submit</button> | 
-        <button type="button" class="btn btn-primary" @click.prevent="click">Change</button>
+        <button type="button" class="btn btn-primary" @click.prevent="click">{{locale}}</button>
     </form><br>
 
     Submit:<br> {{ submitResult }}
