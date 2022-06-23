@@ -4,6 +4,14 @@ import { ref,Ref } from 'vue'
 
 export default function(confirmModal:Ref<any>, confirmBtnName:string){
 
+    const router = useRouter()
+    const route = useRoute()
+
+    function noConfirmPush(toRoute:any){
+        route.meta.noConfirm = true
+        router.push(toRoute)
+    }
+
     //add click event listener in promise
     onBeforeRouteLeave((to, from, next) => {
         //如果不想要confirm離開的，就設定route的meta屬性
@@ -31,5 +39,7 @@ export default function(confirmModal:Ref<any>, confirmBtnName:string){
             if(result) next() //確認結果是true就放行
         })
     })
+
+    return noConfirmPush ;
 
 }

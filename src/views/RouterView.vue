@@ -30,7 +30,7 @@
             確定要離開?
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" @click="no">No</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="no">No</button>
             <button type="button" class="btn btn-primary" @click="yes">Yes</button>
           </div>
         </div>
@@ -52,6 +52,9 @@ let route = useRoute()
 let routeInfo = ref("")
 let store:any = useGlobalStore()
 const confirmModal:Ref<null|Element> = ref(null)
+
+//切出去共用，傳入modal reference和modal確定按鈕的名稱即可
+const noConfirmPush = useRouteLeaveConfirm(confirmModal, 'Yes');
 
 //印出所有routes的資訊
 function info(){
@@ -97,11 +100,8 @@ function provideInject(){
 //一般的送出鈕，不經過確認Modal就能離開
 function submitAndLeave(){
     //check business logic...
-
-    //補個meta屬性，不跳出確認就離開
-    route.meta.noConfirm = true
     //導去自己要的那頁
-    router.push({
+    noConfirmPush({
         name: 'loading'
     })
 }
@@ -112,10 +112,9 @@ function yes(){
 }
 //不想離開，一樣關視窗
 function no(){
-    Modal.getInstance(confirmModal.value as Element)?.hide()
+    //也可以在button上加 data-bs-dismiss="modal" 
+    // Modal.getInstance(confirmModal.value as Element)?.hide()
 }
 
-//切出去共用，傳入modal reference和modal確定按鈕的名稱即可
-useRouteLeaveConfirm(confirmModal, 'Yes');
 
 </script>
