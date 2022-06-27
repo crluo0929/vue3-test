@@ -4,7 +4,8 @@
     <h3>測試bootstrap Modal用法</h3>
     <hr/>
 
-     <button class="btn btn-primary" 
+    <!-- 不加data-bs-toggle -->
+    <button class="btn btn-primary" 
       @click="maunalOpen"><font-awesome-icon icon="fa-solid fa-bell" />手動open</button> | 
     <button class="btn btn-primary"
       data-bs-toggle="modal"
@@ -58,15 +59,22 @@
 <script setup lang="ts">
 
 import Modal from 'bootstrap/js/dist/modal';
-import { ref, Ref } from 'vue';
+import { onMounted, ref, Ref } from 'vue';
 
 //提供給template中的 ref 參考
 const myModalRef:Ref<null|HTMLElement> = ref(null)
+let modal:Modal;
+
+//onMounted時就先綁定好
+onMounted(()=>{
+  modal = new Modal(myModalRef.value as Element)
+})
 
 //按下確認鈕
 function confirm(){
   //透過ref參考到原來dom上的modal元素，並呼叫Modal的hide()來關閉視窗
-  Modal.getInstance(myModalRef.value as Element)?.hide()
+  // Modal.getInstance(myModalRef.value as Element)?.hide()
+  modal.hide()
 }
 
 function open(){
@@ -74,9 +82,10 @@ function open(){
 }
 
 function maunalOpen(){
-  var myModal = new Modal(myModalRef.value as Element) 
-  myModal.show()
+  // var myModal = new Modal(myModalRef.value as Element) 
+  // myModal.show()
   // Modal.getInstance(myModalRef.value as Element)?.show(e)
+  modal.show()
 }
 
 </script>

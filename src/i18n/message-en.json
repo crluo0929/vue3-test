@@ -1,6 +1,7 @@
 {
     "message" : "hello",
-
+    "tos": "Term of Service",
+    "term": "I accept the {0}.",
     "user" : {
         "name" : "Mr. Wang"
     },
