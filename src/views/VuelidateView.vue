@@ -45,6 +45,14 @@
             </div>
         </div>
 
+        <div class="form-group row">
+            <label for="other" class="col-sm-2 col-form-label">other</label>
+            <div class="col-sm-10">
+                <!-- 使用自訂v-tip元件輸出error訊息，訊息預設靠上呈現  -->
+                <input type="text" class="form-control" id="other" placeholder="Enter other" v-model="v$.other.$model" v-tip="v$.other">
+            </div>
+        </div>
+
         <br>
         <button type="button" class="btn btn-primary" @click.prevent="clear">Clear</button> |
         <button type="submit" class="btn btn-primary" @click.prevent="submit">Submit</button> | 
@@ -58,8 +66,8 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref, toRefs } from 'vue'
-import useVuelidate from '@vuelidate/core'
-import { required, email, helpers, numeric, createI18nMessage } from '@vuelidate/validators'
+import useVuelidate, { ValidationRule, ValidationRuleWithoutParams, ValidationRuleWithParams } from '@vuelidate/core'
+import { required, email, helpers, numeric, createI18nMessage, ValidatorWrapper } from '@vuelidate/validators'
 import Contact from '../components/Contact.vue' 
 import { useI18n } from 'vue-i18n'
 import vTip  from '../directives/tips'
@@ -74,17 +82,18 @@ let form = reactive({
         tel : '0911123456'
     },
     age: 18,
-    address: 'address'
+    address: 'address',
+    other: 'other'
 })
 
 let submitResult:any = ref(null)
 
 //自訂驗證器
-let maxLength = (max:number) =>{
+let maxLength:any = function(max:number){
     return {
         $validator : (value:string) => value.length <= max,
-        //該驗證器的訊息會經過withI18nMessage轉換，所以指定成i18n訊息檔的位置，或可不設置$message，在createI18nMessage時再指定messagePath
-        $message : "validations.customValidator"  
+        //客製化訊息
+        $message : ({$pending,$invalid, $params, $model}:any)=>{ return `這是客製化錯誤訊息:${$model}輸入有誤` }
     }
 }
 
@@ -104,7 +113,8 @@ const rules = {
         tel : { required, $autoDirty: true }
     },
     age: { numeric:  helpers.withMessage('這欄需要輸入數字', numeric) }, //驗證器的客製化錯誤訊息
-    address: { customValidator : maxLength18nValidator } //設定客製化的驗證器
+    address: { customValidator : maxLength18nValidator }, //設定客製化的驗證器
+    other: { maxLength : maxLength(5) }
      
 }
 
