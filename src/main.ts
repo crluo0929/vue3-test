@@ -2,6 +2,9 @@ import { createApp,reactive } from 'vue'
 import App from './App.vue'
 import router from './router'
 
+//pinia
+import { createPinia } from 'pinia'
+
 //bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/alert";
@@ -48,5 +51,6 @@ createApp(App)
 .directive('tip',vTip)
 .use(i18n)
 .use(router)
+.use(createPinia())
 .provide(STOREKEY , GLOBALSTORE)
 .mount('#app')

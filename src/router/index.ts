@@ -79,6 +79,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'slot',
     component: () => import(/* webpackChunkName: "slot" */ '../views/SlotView.vue')
   },
+  {
+    path: '/pinia',
+    name: 'pinia',
+    component: () => import(/* webpackChunkName: "pinia" */ '../views/PiniaView.vue')
+  },
 ]
 
 const router = createRouter({

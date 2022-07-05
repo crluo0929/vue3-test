@@ -9,7 +9,8 @@
     <router-link to="/routerview">RouterView</router-link> |
     <router-link to="/tip">TipView</router-link> |
     <router-link to="/toast">ToastView</router-link> |
-    <router-link to="/slot">SlotView</router-link> 
+    <router-link to="/slot">SlotView</router-link> |
+    <router-link to="/pinia">PiniaView</router-link> 
   </nav>
   <router-view />
 
