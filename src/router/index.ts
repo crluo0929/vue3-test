@@ -74,6 +74,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'toast',
     component: () => import(/* webpackChunkName: "toast" */ '../views/ToastView.vue')
   },
+  {
+    path: '/slot',
+    name: 'slot',
+    component: () => import(/* webpackChunkName: "slot" */ '../views/SlotView.vue')
+  },
 ]
 
 const router = createRouter({
