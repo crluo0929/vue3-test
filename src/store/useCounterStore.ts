@@ -27,17 +27,17 @@ const useCounterStore = defineStore({
 })
 export default useCounterStore ;
 
-//也可以用類似setup方式定義sotre
+//也可以用類似setup方式定義sotre，但這樣IDE不好找變數
 // import {ref, computed} from 'vue'
 
 // const useCounterStore = defineStore('counter', function () {
-//     const count = ref(0)
-//     const double = computed(() => count.value * 2)
-//     function increment() {
-//       count.value++
-//     }
+//     const counter = ref(0)
+//     const double = computed(() => counter.value * 2)
+//     const square = computed(() => counter.value * counter.value)
+//     function increment() { counter.value++ }
+//     function decrement() { counter.value-- }
 //     return {
-//         count, double, increment
+//         counter, double,square, increment, decrement
 //     }
 // })
 // export default useCounterStore ;

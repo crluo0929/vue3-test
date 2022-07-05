@@ -10,7 +10,7 @@
 </template>
 <script setup lang="ts">
 
-import { storeToRefs } from 'pinia'
+import { storeToRefs} from 'pinia'
 import { onUnmounted } from 'vue';
 import useCounterStore from '../store/useCounterStore'
 
