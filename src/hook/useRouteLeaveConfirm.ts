@@ -1,6 +1,6 @@
-import { useRouter,useRoute, onBeforeRouteLeave, } from 'vue-router'
+import { useRouter,useRoute, onBeforeRouteLeave, RouteLocationRaw, } from 'vue-router'
 import Modal from 'bootstrap/js/dist/modal';
-import { ref,Ref } from 'vue'
+import { Ref } from 'vue'
 import { Validation,ValidationArgs } from '@vuelidate/core'
 
 export default function(confirmModal:Ref<any>, confirmBtnName:string, v$?:Ref<Validation<ValidationArgs, any>>){
@@ -8,7 +8,7 @@ export default function(confirmModal:Ref<any>, confirmBtnName:string, v$?:Ref<Va
     const router = useRouter()
     const route = useRoute()
 
-    function noConfirmPush(toRoute:any){
+    function noConfirmPush(toRoute:RouteLocationRaw){
         route.meta.noConfirm = true
         router.push(toRoute)
     }
@@ -27,9 +27,9 @@ export default function(confirmModal:Ref<any>, confirmBtnName:string, v$?:Ref<Va
         }
 
         const myModal = new Modal(confirmModal.value as Element) 
-        const confirmPromise = new Promise((resolve,reject)=>{
-            const handler = function(e:any){ //偵測click事件
-                if(e.target.innerText === confirmBtnName){ //這裡要跟Modal的確認按鈕內容一樣
+        const confirmPromise = new Promise((resolve)=>{
+            const handler = function(e:Event){ //偵測click事件
+                if((e.target as HTMLElement).innerText === confirmBtnName){ //這裡要跟Modal的確認按鈕內容一樣
                     resolve(true)
                 }else{
                     resolve(false)
